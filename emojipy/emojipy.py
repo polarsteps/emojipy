@@ -32,6 +32,7 @@ class Emoji(object):
                                   re.UNICODE)
     ascii_compiled = re.compile(ignored_regexp+"|("+ascii_regexp+")",
                                 re.IGNORECASE)
+    unicode_compiled_single_group = re.compile(unicode_regexp)
 
     @classmethod
     def match(cls, text):
@@ -39,7 +40,7 @@ class Emoji(object):
 
     @classmethod
     def split_emojis(cls, text):
-        return re.split(cls.unicode_compiled_no_ignore, text)
+        return re.split(cls.unicode_compiled_single_group, text)
 
     @classmethod
     def to_image(cls, text):
