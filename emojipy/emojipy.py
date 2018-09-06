@@ -34,6 +34,14 @@ class Emoji(object):
                                 re.IGNORECASE)
 
     @classmethod
+    def match(cls, text):
+        return re.search(cls.unicode_compiled, text)
+
+    @classmethod
+    def split_emojis(cls, text):
+        return re.split(cls.unicode_compiled_no_ignore, text)
+
+    @classmethod
     def to_image(cls, text):
         text = cls.unicode_to_image(text)
         text = cls.shortcode_to_image(text)
